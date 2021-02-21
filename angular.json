@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "finance",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "finance": {
+      "projectType": "application",
+      "root": "apps/finance",
+      "sourceRoot": "apps/finance/src",
+      "prefix": "finance",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/finance",
+            "index": "apps/finance/src/index.html",
+            "main": "apps/finance/src/main.ts",
+            "polyfills": "apps/finance/src/polyfills.ts",
+            "tsConfig": "apps/finance/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/finance/src/favicon.ico",
+              "apps/finance/src/assets"
+            ],
+            "styles": ["apps/finance/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/finance/src/environments/environment.ts",
+                  "with": "apps/finance/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "finance:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "finance:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "finance:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/finance/src/**/*.ts",
+              "apps/finance/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/finance"],
+          "options": {
+            "jestConfig": "apps/finance/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "finance-e2e": {
+      "root": "apps/finance-e2e",
+      "sourceRoot": "apps/finance-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/finance-e2e/cypress.json",
+            "tsConfig": "apps/finance-e2e/tsconfig.e2e.json",
+            "devServerTarget": "finance:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "finance:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/finance-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
