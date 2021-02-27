@@ -1,0 +1,26 @@
+.header {
+    background: #1976d2;
+    display: flex;
+
+    &__main-start {
+    }
+
+    &__main-middle {
+        ul {
+            display: flex;
+
+            li {
+                list-style: none;
+                padding: 10px;
+                color: #ffffff;
+
+                a {
+                    color: #000000;
+                }
+            }
+        }
+    }
+
+    &__main-end {
+    }
+}

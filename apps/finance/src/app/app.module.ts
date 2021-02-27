@@ -1,21 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ExpencesComponent } from './expences/expences.component';
-
-const appRoutes: Routes = [
-  { path: 'expences', component: ExpencesComponent }
-];
+import { AppRoutingModule } from './app.routing.module';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { SharedModule } from './shared';
 
 @NgModule({
-  declarations: [AppComponent, ExpencesComponent],
-  imports: [
-    BrowserModule, 
-    RouterModule.forRoot(appRoutes)
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+	declarations: [AppComponent, ExpensesComponent],
+	imports: [BrowserModule, SharedModule, AppRoutingModule],
+	providers: [],
+	bootstrap: [AppComponent],
 })
 export class AppModule {}
