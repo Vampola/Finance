@@ -7,9 +7,9 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { SharedModule } from './shared';
 
 @NgModule({
-	declarations: [AppComponent, ExpensesComponent],
-	imports: [BrowserModule, SharedModule, AppRoutingModule],
-	providers: [],
-	bootstrap: [AppComponent],
+    declarations: [AppComponent, ExpensesComponent],
+    imports: [BrowserModule, SharedModule, AppRoutingModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
