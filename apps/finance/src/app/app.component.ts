@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import '@finance/styles';
 
 @Component({
     selector: 'finance-root',

@@ -1,34 +1,23 @@
 {
-  "implicitDependencies": {
-    "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": { "dependencies": "*", "devDependencies": "*" },
+        "tsconfig.base.json": "*",
+        "tslint.json": "*",
+        ".eslintrc.json": "*",
+        "nx.json": "*"
     },
-    "tsconfig.base.json": "*",
-    "tslint.json": "*",
-    ".eslintrc.json": "*",
-    "nx.json": "*"
-  },
-  "affected": {
-    "defaultBase": "master"
-  },
-  "npmScope": "finance",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
-    }
-  },
-  "projects": {
-    "finance": {
-      "tags": []
+    "affected": { "defaultBase": "master" },
+    "npmScope": "finance",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+        }
     },
-    "finance-e2e": {
-      "tags": [],
-      "implicitDependencies": ["finance"]
+    "projects": {
+        "finance": { "tags": [] },
+        "finance-e2e": { "tags": [], "implicitDependencies": ["finance"] },
+        "styles": { "tags": [] }
     }
-  }
 }

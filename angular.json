@@ -1,7 +1,8 @@
 {
   "version": 1,
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
   },
   "defaultProject": "finance",
   "schematics": {
@@ -51,8 +52,16 @@
               "apps/finance/src/favicon.ico",
               "apps/finance/src/assets"
             ],
-            "styles": ["apps/finance/src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "apps/finance/src/styles.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/styles/src/lib"
+              ]
+            },
+            "extractCss": true
           },
           "configurations": {
             "production": {
@@ -112,7 +121,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/finance"],
+          "outputs": [
+            "coverage/apps/finance"
+          ],
           "options": {
             "jestConfig": "apps/finance/jest.config.js",
             "passWithNoTests": true
@@ -141,7 +152,34 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/finance-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/finance-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "styles": {
+      "root": "libs/styles",
+      "sourceRoot": "libs/styles/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/styles/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/styles"
+          ],
+          "options": {
+            "jestConfig": "libs/styles/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
